@@ -23,14 +23,35 @@ class ValidateFeedPageParamsUseCase {
         }
     }
 
-    private fun containsSqlInjection(searchQuery: String): Boolean {
-        val sqlKeywords = setOf("SELECT", "INSERT", "UPDATE", "DELETE", "DROP", "UNION", "/*", "*/", "OR 1=1")
-        return sqlKeywords.any { searchQuery.contains(it, ignoreCase = true) }
+    private fun containsSqlInjection(searchQuery: String) = sqlKeywords.any {
+        searchQuery.contains(it, ignoreCase = true)
     }
-    private fun containsXssAttempt(searchQuery: String): Boolean {
-        val xssKeywords = setOf(
-            "<script>", "</script>", "javascript:", "onerror=", "onload=", "eval(", "alert(", "document.cookie"
+    private fun containsXssAttempt(searchQuery: String) = xssKeywords.any {
+        searchQuery.contains(it, ignoreCase = true)
+    }
+
+    private companion object {
+        val sqlKeywords = setOf(
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "DROP",
+            "UNION",
+            "/*",
+            "*/",
+            "OR 1=1"
         )
-        return xssKeywords.any { searchQuery.contains(it, ignoreCase = true) }
+
+        val xssKeywords = setOf(
+            "<script>",
+            "</script>",
+            "javascript:",
+            "onerror=",
+            "onload=",
+            "eval(",
+            "alert(",
+            "document.cookie"
+        )
     }
 }

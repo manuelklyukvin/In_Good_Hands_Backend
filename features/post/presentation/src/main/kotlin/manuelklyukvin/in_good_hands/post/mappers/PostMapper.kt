@@ -8,25 +8,27 @@ import manuelklyukvin.in_good_hands.post.use_cases.FormatAddressUseCase
 
 class PostMapper(private val formatAddressUseCase: FormatAddressUseCase) {
     fun toPresentation(domainPost: DomainPost?) = domainPost?.let {
-        PresentationPost(
-            id = domainPost.id,
-            imageNames = domainPost.imageNames,
-            user = PresentationUser(
-                id = domainPost.user.id,
-                avatarName = domainPost.user.avatarName,
-                name = domainPost.user.name
-            ),
-            title = domainPost.title,
-            description = domainPost.description,
-            pet = PresentationPet(
-                nickname = domainPost.pet.nickname,
-                typeId = domainPost.pet.typeId,
-                genderId = domainPost.pet.genderId,
-                ageId = domainPost.pet.ageId,
-                breed = domainPost.pet.breed
-            ),
-            address = formatAddressUseCase(domainPost.address),
-            publicationDate = domainPost.publicationDate.toString()
-        )
+        with(domainPost) {
+            PresentationPost(
+                id = id,
+                imageNames = imageNames,
+                user = PresentationUser(
+                    id = user.id,
+                    avatarName = user.avatarName,
+                    name = user.name
+                ),
+                title = title,
+                description = description,
+                pet = PresentationPet(
+                    nickname = pet.nickname,
+                    typeId = pet.typeId,
+                    genderId = pet.genderId,
+                    ageId = pet.ageId,
+                    breed = pet.breed
+                ),
+                address = formatAddressUseCase(address),
+                publicationDate = publicationDate.toString()
+            )
+        }
     }
 }

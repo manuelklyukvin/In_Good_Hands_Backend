@@ -8,15 +8,15 @@ import org.gradle.api.Project
 
 class DiGradlePlugin : CoreGradlePlugin() {
     override fun applyPlugins(project: Project) {
-        project.plugins.apply(Plugins.JVM)
+        project.apply { plugin(Plugins.JVM) }
     }
 
     override fun applyDependencies(project: Project) {
         project.dependencies.apply {
             koin()
 
-            corePresentation()
             coreData()
+            corePresentation()
         }
     }
 

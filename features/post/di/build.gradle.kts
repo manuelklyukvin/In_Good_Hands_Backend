@@ -6,7 +6,7 @@ import manuelklyukvin.in_good_hands.build_src.modules.postPresentation
 apply<DiGradlePlugin>()
 
 dependencies {
-    postPresentation()
-    postDomain()
     postData()
+    postDomain()
+    postPresentation()
 }

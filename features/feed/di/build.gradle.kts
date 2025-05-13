@@ -6,7 +6,7 @@ import manuelklyukvin.in_good_hands.build_src.modules.feedPresentation
 apply<DiGradlePlugin>()
 
 dependencies {
-    feedPresentation()
-    feedDomain()
     feedData()
+    feedDomain()
+    feedPresentation()
 }

@@ -10,27 +10,27 @@ val post = "$features:post"
 include(app)
 include(
     core,
-    presentationModule(core),
     dataModule(core),
+    presentationModule(core)
 )
 include(features)
 
 include(
     feed,
-    presentationModule(feed),
-    domainModule(feed),
     dataModule(feed),
+    domainModule(feed),
+    presentationModule(feed),
     diModule(feed)
 )
 include(
     post,
-    presentationModule(post),
-    domainModule(post),
     dataModule(post),
+    domainModule(post),
+    presentationModule(post),
     diModule(post)
 )
 
-private fun presentationModule(module: String) = "$module:presentation"
-private fun domainModule(module: String) = "$module:domain"
 private fun dataModule(module: String) = "$module:data"
+private fun domainModule(module: String) = "$module:domain"
+private fun presentationModule(module: String) = "$module:presentation"
 private fun diModule(module: String) = "$module:di"
